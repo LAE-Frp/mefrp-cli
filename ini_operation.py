@@ -12,6 +12,9 @@ def writeToIni():
 def init():
     if os.path.exists("config.ini"):
         cp.read("config.ini")
+    else:
+        os.system("echo. > config.ini")
+        cp.read("config.ini")
 
 
 def setToken(token):
@@ -23,4 +26,8 @@ def setToken(token):
 
 
 def readToken():
-    return cp.get("auth", "token")
+    try:
+        return cp.get("auth", "token")
+    except:
+        print("您尚未设置Token!")
+        return
